@@ -45,6 +45,7 @@ class IssueView(TemplateView):
         context['issue'] = issue
         return context
 
+
 class IssueUpdate(TemplateView):
     template_name = 'issue_update.html'
 
@@ -62,25 +63,25 @@ class IssueUpdate(TemplateView):
         issue = get_object_or_404(Issue, pk=kwargs['pk'])
         form = IssueForm(data=request.POST)
         if form.is_valid():
-            issue.summary = form.cleaned_data.get('summary'),
-            issue.description = form.cleaned_data.get('description'),
-            issue.status = form.cleaned_data.get('status'),
-            issue.type = form.cleaned_data.get('type'),
+            issue.summary = form.cleaned_data.get('summary')
+            issue.description = form.cleaned_data.get('description')
+            issue.status = form.cleaned_data.get('status')
+            issue.type = form.cleaned_data.get('type')
 
             issue.save()
         else:
             return render(request, 'issue_update.html', context={'form': form, "id": issue.id})
-        return redirect('product_view', pk=issue.id)
+        return redirect('issue_view', pk=issue.id)
 
 
 class IssueDelete(TemplateView):
     template_name = 'issue_delete.html'
 
     def get(self, request, **kwargs):
-        issue = get_object_or_404(Issue, pk=pk)
+        issue = get_object_or_404(Issue, pk=kwargs.get("pk"))
         return render(request, 'issue_delete.html', context={'issue': issue})
 
     def post(self, request, **kwargs):
-        issue = get_object_or_404(Issue, pk=pk)
+        issue = get_object_or_404(Issue, pk=kwargs.get("pk"))
         issue.delete()
         return redirect('index')
