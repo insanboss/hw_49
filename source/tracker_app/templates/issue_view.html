@@ -28,7 +28,7 @@
                 <p class="card-text">Описание не указано</p>
             {% endif %}
                 <p class="card-text">Статус : {{ issue.status }}</p>
-                <p class="card-text">Тип : {{ issue.type }}</p>
+                <p>Types: {% for type in issue.type.all %}{{ type.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
       </div>
 </div>
 {% endblock %}

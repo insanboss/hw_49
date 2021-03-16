@@ -19,20 +19,20 @@ class Index(TemplateView):
 class AddIssue(View):
 
     def get(self, request, **kwargs):
-        issue = IssueForm()
-        return render(request, 'issue_create.html', context={'form': issue})
+        form = IssueForm()
+        return render(request, 'issue_create.html', context={'form': form})
 
     def post(self, request, **kwargs):
-        issue = IssueForm(data=request.POST)
-        if issue.is_valid():
+        form = IssueForm(data=request.POST)
+        if form.is_valid():
             issue = Issue.objects.create(
-                summary=issue.cleaned_data.get('summary'),
-                description=issue.cleaned_data.get('description'),
-                status=issue.cleaned_data.get('status'),
-                type=issue.cleaned_data.get('type'),
+                summary=form.cleaned_data.get('summary'),
+                description=form.cleaned_data.get('description'),
+                status=form.cleaned_data.get('status'),
             )
+            issue.type.set(form.cleaned_data.get('type'))
         else:
-            return render(request, 'issue_create.html', context={'form': issue})
+            return render(request, 'issue_create.html', context={'form': form})
         return redirect('issue_view', pk=issue.id)
 
 
@@ -55,7 +55,7 @@ class IssueUpdate(TemplateView):
             'summary': issue.summary,
             'description': issue.description,
             'status': issue.status,
-            'type': issue.type
+            'type': issue.type.all()
         })
         return render(request, 'issue_update.html', context={'form': form, "id": issue.id})
 
@@ -66,7 +66,7 @@ class IssueUpdate(TemplateView):
             issue.summary = form.cleaned_data.get('summary')
             issue.description = form.cleaned_data.get('description')
             issue.status = form.cleaned_data.get('status')
-            issue.type = form.cleaned_data.get('type')
+            issue.type.set(form.cleaned_data.get('type'))
 
             issue.save()
         else:
