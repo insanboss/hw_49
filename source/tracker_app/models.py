@@ -1,5 +1,7 @@
 from django.db import models
+from tracker_app.validator import BadWordsValidation, capital_letter, MinLengthValidator
 
+bad_words = ('fuck', 'bullshit', 'asshole')
 
 # Create your models here.
 
@@ -15,8 +17,8 @@ class BaseModel(models.Model):
 
 
 class Issue(BaseModel):
-    summary = models.CharField(max_length=50, null=False, blank=False, verbose_name='Заголовок')
-    description = models.CharField(max_length=1000, null=True, blank=True, verbose_name='Описание')
+    summary = models.CharField(max_length=50, null=False, blank=False, verbose_name='Заголовок', validators=[BadWordsValidation(bad_words), capital_letter, MinLengthValidator(10)])
+    description = models.CharField(max_length=1000, null=True, blank=True, verbose_name='Описание', validators=[BadWordsValidation(bad_words)])
     status = models.ForeignKey('tracker_app.Status', on_delete=models.PROTECT, max_length=50, verbose_name='Статус')
     type = models.ManyToManyField('tracker_app.Type', related_name='issues', blank=True, verbose_name='Тип')
 
