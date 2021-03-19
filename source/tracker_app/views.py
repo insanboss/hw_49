@@ -19,6 +19,7 @@ class Index(TemplateView):
 class AddIssue(View):
 
     def get(self, request, **kwargs):
+        print(self.kwargs, request, kwargs)
         form = IssueForm()
         return render(request, 'issue_create.html', context={'form': form})
 
@@ -50,6 +51,7 @@ class IssueUpdate(TemplateView):
     template_name = 'issue_update.html'
 
     def get(self, request, **kwargs):
+        print(self.kwargs, request, kwargs)
         issue = get_object_or_404(Issue, pk=kwargs['pk'])
         form = IssueForm(initial={
             'summary': issue.summary,
@@ -60,6 +62,7 @@ class IssueUpdate(TemplateView):
         return render(request, 'issue_update.html', context={'form': form, "id": issue.id})
 
     def post(self, request, **kwargs):
+        print(self.kwargs, request, kwargs)
         issue = get_object_or_404(Issue, pk=kwargs['pk'])
         form = IssueForm(data=request.POST)
         if form.is_valid():
