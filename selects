@@ -1,0 +1,14 @@
+from tracker_app.models import Issue
+from datetime import timedelta, datetime, timezone
+
+1.
+    Issue.objects.filter(updated_at__range=(datetime.now(timezone.utc)-timedelta(days=30), datetime.now(timezone.utc)))
+2.
+    Issue.objects.filter(status__name__in=['New', 'Done'], type__name__in=['Task', 'Bug'])
+3. 
+from django.db.models import Q
+    q1= Q(summary__icontains='Bug')
+    q2= Q(type__name='Bug')
+    q3= Q(status__name='Done')
+    Issue.objects.filter((q1|q2)&~q3)
+
