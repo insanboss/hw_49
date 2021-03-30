@@ -3,10 +3,15 @@ from django.views.generic import View, TemplateView, ListView
 
 # Create your views here.
 from tracker_app.forms import IssueForm, SimpleSearchForm
-from tracker_app.models import Issue
+from tracker_app.models import Issue, Project
 from django.db.models import Q
 from django.utils.http import urlencode
 
+class Index_view(ListView):
+    template_name = 'index_projects.html'
+    context_object_name = 'projects'
+    model = Project
+    ordering = 'start_time'
 
 class Index(ListView):
     template_name = 'index.html'
@@ -29,7 +34,6 @@ class Index(ListView):
         if self.form.is_valid():
             return self.form.cleaned_data['search']
         return None
-
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
