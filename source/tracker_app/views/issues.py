@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View, TemplateView, ListView
+from django.views.generic import TemplateView, ListView, CreateView
 
 # Create your views here.
 from tracker_app.forms import IssueForm, SimpleSearchForm
@@ -7,14 +7,9 @@ from tracker_app.models import Issue, Project
 from django.db.models import Q
 from django.utils.http import urlencode
 
-class Index_view(ListView):
-    template_name = 'index_projects.html'
-    context_object_name = 'projects'
-    model = Project
-    ordering = 'start_time'
 
 class Index(ListView):
-    template_name = 'index.html'
+    template_name = 'issues/index.html'
     context_object_name = 'issues'
     model = Issue
     ordering = ['-created_at']
@@ -51,29 +46,22 @@ class Index(ListView):
         return queryset
 
 
-class AddIssue(View):
+class AddIssue(CreateView):
+    model = Issue
+    template_name = 'issues/issue_create.html'
+    form_class = IssueForm
 
-    def get(self, request, **kwargs):
-        print(self.kwargs, request, kwargs)
-        form = IssueForm()
-        return render(request, 'issue_create.html', context={'form': form})
-
-    def post(self, request, **kwargs):
-        form = IssueForm(data=request.POST)
-        if form.is_valid():
-            issue = Issue.objects.create(
-                summary=form.cleaned_data.get('summary'),
-                description=form.cleaned_data.get('description'),
-                status=form.cleaned_data.get('status'),
-            )
-            issue.type.set(form.cleaned_data.get('type'))
-        else:
-            return render(request, 'issue_create.html', context={'form': form})
-        return redirect('issue_view', pk=issue.id)
+    def form_valid(self, form):
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        issue = form.save(commit=False)
+        issue.project = project
+        issue.save()
+        form.save_m2m()
+        return redirect('project_View', pk=project.pk)
 
 
 class IssueView(TemplateView):
-    template_name = 'issue_view.html'
+    template_name = 'issues/issue_view.html'
 
     def get_context_data(self, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs['pk'])
@@ -83,7 +71,7 @@ class IssueView(TemplateView):
 
 
 class IssueUpdate(TemplateView):
-    template_name = 'issue_update.html'
+    template_name = 'issues/issue_update.html'
 
     def get(self, request, **kwargs):
         print(self.kwargs, request, kwargs)
@@ -94,7 +82,7 @@ class IssueUpdate(TemplateView):
             'status': issue.status,
             'type': issue.type.all()
         })
-        return render(request, 'issue_update.html', context={'form': form, "id": issue.id})
+        return render(request, 'issues/issue_update.html', context={'form': form, "id": issue.id})
 
     def post(self, request, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs['pk'])
@@ -107,16 +95,16 @@ class IssueUpdate(TemplateView):
 
             issue.save()
         else:
-            return render(request, 'issue_update.html', context={'form': form, "id": issue.id})
+            return render(request, 'issues/issue_update.html', context={'form': form, "id": issue.id})
         return redirect('issue_view', pk=issue.id)
 
 
 class IssueDelete(TemplateView):
-    template_name = 'issue_delete.html'
+    template_name = 'issues/issue_delete.html'
 
     def get(self, request, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs.get("pk"))
-        return render(request, 'issue_delete.html', context={'issue': issue})
+        return render(request, 'issues/issue_delete.html', context={'issue': issue})
 
     def post(self, request, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs.get("pk"))

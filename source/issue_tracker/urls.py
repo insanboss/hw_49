@@ -16,13 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from tracker_app.views import Index, AddIssue, IssueView, IssueUpdate, IssueDelete
+from tracker_app.views import (
+    Index,
+    AddIssue,
+    IssueView,
+    IssueUpdate,
+    IssueDelete,
+    Index_projects,
+    Project_view,
+    Project_create,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Index.as_view(), name='index'),
-    path('issue/add/', AddIssue.as_view(), name='issue_add'),
+    path('issues', Index.as_view(), name='index'),
     path('issue/<int:pk>', IssueView.as_view(), name='issue_view'),
     path('issue/<int:pk>/update/', IssueUpdate.as_view(), name='issue_update'),
     path('issue/<int:pk>/delete/', IssueDelete.as_view(), name='issue_delete'),
+    path('', Index_projects.as_view(), name='index_projects'),
+    path('project/<int:pk>/', Project_view.as_view(), name='project_View'),
+    path('project/create/', Project_create.as_view(), name='project_create'),
+    path('project/<int:pk>/issue_create', AddIssue.as_view(), name='issue_create'),
 ]

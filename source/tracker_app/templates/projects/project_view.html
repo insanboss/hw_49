@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block menu %}
+    <li><a href="{% url 'issue_create' project.pk %}">Create issue</a></li>
+{% endblock menu %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+
+
+<{% block content %}
+
+
+
+<div class="guest_card card border-dark mt-5" style="max-width: 18rem;">
+      <div class="card-header">
+          <span>{{ project.title }}</span>
+      </div>
+      <div class="card-body text-dark">
+        <h5 class="card-title"></h5>
+            <p class="card-text">Дата начала : {{ project.start_time }}</p>
+            <p>Дата окончания: {{ project.end_time }}</p>
+            {% if project.description %}
+                <p class="card-text">Описание : {{ project.description }}</p>
+            {% else %}
+                <p class="card-text">Описание не указано</p>
+            {% endif %}
+            <div>
+                {% for issue in project.project_issues.all %}
+                <div class="guest_card card border-dark mb-5" style="max-width: 18rem;">
+                    <div class="card-header">
+                        <span><a href="{% url 'issue_view' issue.pk %}">{{ issue.summary }}</a></span>
+                    </div>
+                    <div class="card-body text-dark">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">Статус : {{ issue.status }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+      </div>
+</div>
+{% endblock %}
+

@@ -26,7 +26,7 @@ class Issue(BaseModel):
     status = models.ForeignKey('tracker_app.Status', on_delete=models.PROTECT, max_length=50, verbose_name='Статус')
     type = models.ManyToManyField('tracker_app.Type', related_name='issues', blank=True, verbose_name='Тип')
     project = models.ForeignKey('tracker_app.Project', related_name='project_issues', on_delete=models.CASCADE,
-                                verbose_name='Проект', default=1)
+                                verbose_name='Проект')
 
     class Meta:
         db_table = 'issues'
