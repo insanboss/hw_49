@@ -1,13 +1,10 @@
 from django.db import models
-from django.template.defaultfilters import title
 
 from tracker_app.validator import BadWordsValidation, capital_letter, MinLengthValidator
 
 bad_words = ('fuck', 'bullshit', 'asshole')
 
 # Create your models here.
-
-# status_choices = [('New', 'новый'), ('In Progress', 'в процессе'), ('Done', 'выполнено')]
 
 
 class BaseModel(models.Model):

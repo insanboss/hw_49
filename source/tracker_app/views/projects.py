@@ -2,6 +2,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from tracker_app.forms import ProjectForm
 from tracker_app.models import Project
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class IndexProjects(ListView):
@@ -17,7 +18,7 @@ class ProjectView(DetailView):
     context_object_name = 'project'
 
 
-class ProjectCreate(CreateView):
+class ProjectCreate(LoginRequiredMixin, CreateView):
     template_name = 'projects/project_create.html'
     model = Project
     form_class = ProjectForm
@@ -26,7 +27,7 @@ class ProjectCreate(CreateView):
         return reverse('project_View', kwargs={'pk': self.object.pk})
 
 
-class ProjectUpdate(UpdateView):
+class ProjectUpdate(LoginRequiredMixin, UpdateView):
     model = Project
     template_name = 'projects/project_update.html'
     form_class = ProjectForm
@@ -36,7 +37,7 @@ class ProjectUpdate(UpdateView):
         return reverse('project_View', kwargs={'pk': self.object.pk})
 
 
-class ProjectDelete(DeleteView):
+class ProjectDelete(LoginRequiredMixin, DeleteView):
     model = Project
     template_name = 'projects/project_delete.html'
     context_object_name = 'project'
