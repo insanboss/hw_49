@@ -14,34 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from accounts.views import login_view, logout_view
-from tracker_app.views import (
-    Index,
-    AddIssue,
-    IssueView,
-    IssueUpdate,
-    IssueDelete,
-    IndexProjects,
-    ProjectView,
-    ProjectCreate,
-    ProjectUpdate,
-    ProjectDelete,
-)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('issues', Index.as_view(), name='index'),
-    path('issue/<int:pk>', IssueView.as_view(), name='issue_view'),
-    path('issue/<int:pk>/update/', IssueUpdate.as_view(), name='issue_update'),
-    path('issue/<int:pk>/delete/', IssueDelete.as_view(), name='issue_delete'),
-    path('', IndexProjects.as_view(), name='index_projects'),
-    path('project/<int:pk>/', ProjectView.as_view(), name='project_View'),
-    path('project/create/', ProjectCreate.as_view(), name='project_create'),
-    path('project/<int:pk>/issue_create', AddIssue.as_view(), name='issue_create'),
-    path('project/<int:pk>/update/', ProjectUpdate.as_view(), name='project_update'),
-    path('project/<int:pk>/delete/', ProjectDelete.as_view(), name='project_delete'),
-    path('accounts/login/', login_view, name='login'),
-    path('accounts/logout/', logout_view, name='logout')
+    path('accounts/', include('accounts.urls')),
+    path('', include('tracker_app.urls'))
 ]

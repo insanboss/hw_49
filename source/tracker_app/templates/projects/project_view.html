@@ -2,9 +2,9 @@
 
 
 {% block menu %}
-    <li><a href="{% url 'issue_create' project.pk %}">Create issue</a></li>
-    <li><a href="{% url 'project_update' project.pk %}">Project update</a></li>
-    <li><a href="{% url 'project_delete' project.pk %}">Project delete</a></li>
+    <li><a href="{% url 'tracker:issue_create' project.pk %}">Create issue</a></li>
+    <li><a href="{% url 'tracker:project_update' project.pk %}">Project update</a></li>
+    <li><a href="{% url 'tracker:project_delete' project.pk %}">Project delete</a></li>
 {% endblock menu %}
 
 {% block title %}{{ project.title }}{% endblock %}
@@ -32,7 +32,7 @@
                 {% for issue in project.project_issues.all %}
                 <div class="guest_card card border-dark mb-5" style="max-width: 18rem;">
                     <div class="card-header">
-                        <span><a href="{% url 'issue_view' issue.pk %}">{{ issue.summary }}</a></span>
+                        <span><a href="{% url 'tracker:issue_view' issue.pk %}">{{ issue.summary }}</a></span>
                     </div>
                     <div class="card-body text-dark">
                     <h5 class="card-title"></h5>

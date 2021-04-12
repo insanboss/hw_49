@@ -10,7 +10,7 @@
         {% for issue in issues %}
             <div class="guest_card card border-dark mb-5" style="max-width: 18rem;">
               <div class="card-header">
-                  <span><a href="{% url 'issue_view' issue.pk %}">{{ issue.summary }}</a></span>
+                  <span><a href="{% url 'tracker:issue_view' issue.pk %}">{{ issue.summary }}</a></span>
               </div>
               <div class="card-body text-dark">
                 <h5 class="card-title"></h5>

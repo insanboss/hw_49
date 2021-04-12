@@ -41,4 +41,4 @@ class ProjectDelete(LoginRequiredMixin, DeleteView):
     model = Project
     template_name = 'projects/project_delete.html'
     context_object_name = 'project'
-    success_url = reverse_lazy('index_projects')
+    success_url = reverse_lazy('tracker:index_projects')

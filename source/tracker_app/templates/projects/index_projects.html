@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block menu %}
 
-    <li><a href="{% url 'project_create' %}">Create project</a></li>
-    <li><a href="{% url 'index' %}">Issues</a></li>
+    <li><a href="{% url 'tracker:project_create' %}">Create project</a></li>
+    <li><a href="{% url 'tracker:index' %}">Issues</a></li>
 
 {% endblock %}
 
@@ -14,7 +14,7 @@
         {% for project in projects %}
             <div class="guest_card card border-dark mb-5" style="max-width: 18rem;">
               <div class="card-header">
-                  <a href="{% url 'project_View' project.pk %}"><span>{{ project.title }}</span></a>
+                  <a href="{% url 'tracker:project_View' project.pk %}"><span>{{ project.title }}</span></a>
               </div>
               <div class="card-body text-dark">
                 <h5 class="card-title"></h5>

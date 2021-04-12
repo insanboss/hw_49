@@ -4,8 +4,8 @@
 {% block page_header %}Вы уверены, что хотите удалить проект {{ project.title }}?{% endblock page_header %}
 
 {% block content%}
-    <form action="{% url "project_delete" project.id %}" method="POST">
+    <form action="{% url "tracker:project_delete" project.id %}" method="POST">
         {% include 'partial/form.html' with button_text="Конечно я хочу удалить проект" %}
-        <a href="{% url "project_View" project.id %}">Нее, передумал что-то</a>
+        <a href="{% url "tracker:project_View" project.id %}">Нее, передумал что-то</a>
     </form>
 {% endblock content %}

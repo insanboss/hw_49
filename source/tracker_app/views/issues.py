@@ -79,11 +79,11 @@ class IssueUpdate(LoginRequiredMixin, UpdateView):
     context_object_name = 'issue'
 
     def get_success_url(self):
-        return reverse('issue_view', kwargs={'pk': self.object.pk})
+        return reverse('tracker:issue_view', kwargs={'pk': self.object.pk})
 
 
 class IssueDelete(LoginRequiredMixin, DeleteView):
     template_name = 'issues/issue_delete.html'
     model = Issue
     context_object_name = 'issue'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('tracker:index')
