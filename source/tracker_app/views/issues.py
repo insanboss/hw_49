@@ -59,7 +59,7 @@ class AddIssue(LoginRequiredMixin, CreateView):
         issue.project = project
         issue.save()
         form.save_m2m()
-        return redirect('project_View', pk=project.pk)
+        return redirect('tracker:project_View', pk=project.pk)
 
 
 class IssueView(TemplateView):
