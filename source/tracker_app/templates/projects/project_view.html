@@ -2,10 +2,16 @@
 
 
 {% block menu %}
+    {% if perms.tracker_app.add_issue and request.user in project.user.all %}
     <li><a href="{% url 'tracker:issue_create' project.pk %}">Create issue</a></li>
+    {% endif %}
     <li><a href="{% url 'tracker:project_update' project.pk %}">Project update</a></li>
+    {% if perms.tracker_app.delete_project %}
     <li><a href="{% url 'tracker:project_delete' project.pk %}">Project delete</a></li>
+    {% endif %}
+    {% if perms.auth.add_user %}
     <li><a href="{% url 'tracker:user_add' project.pk %}">Add user</a></li>
+    {% endif %}
 {% endblock menu %}
 
 {% block title %}{{ project.title }}{% endblock %}
@@ -13,8 +19,7 @@
 
 
 <{% block content %}
-
-
+{{ project.user.all }}
 
 <div class="guest_card card border-dark mt-5" style="max-width: 18rem;">
       <div class="card-header">

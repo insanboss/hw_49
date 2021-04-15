@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
@@ -48,10 +48,12 @@ class Index(ListView):
         return queryset
 
 
-class AddIssue(LoginRequiredMixin, CreateView):
+class AddIssue(PermissionRequiredMixin, CreateView):
     model = Issue
     template_name = 'issues/issue_create.html'
     form_class = IssueForm
+    permission_required = 'tracker_app.add_issue'
+
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
@@ -61,8 +63,12 @@ class AddIssue(LoginRequiredMixin, CreateView):
         form.save_m2m()
         return redirect('tracker:project_View', pk=project.pk)
 
+    def has_permission(self):
+        return super().has_permission() and self.request.user in Project.objects.get(pk=self.kwargs.get('pk')).user.all()
+
 
 class IssueView(TemplateView):
+
     template_name = 'issues/issue_view.html'
 
     def get_context_data(self, **kwargs):
@@ -72,18 +78,26 @@ class IssueView(TemplateView):
         return context
 
 
-class IssueUpdate(LoginRequiredMixin, UpdateView):
+class IssueUpdate(PermissionRequiredMixin, UpdateView):
     model = Issue
     template_name = 'issues/issue_update.html'
     form_class = IssueForm
     context_object_name = 'issue'
+    permission_required = 'tracker_app.change_issue'
 
     def get_success_url(self):
         return reverse('tracker:issue_view', kwargs={'pk': self.object.pk})
 
+    def has_permission(self):
+        return super().has_permission() and self.request.user in self.get_object().project.user.all()
 
-class IssueDelete(LoginRequiredMixin, DeleteView):
+
+class IssueDelete(PermissionRequiredMixin, DeleteView):
     template_name = 'issues/issue_delete.html'
     model = Issue
     context_object_name = 'issue'
     success_url = reverse_lazy('tracker:index')
+    permission_required = 'tracker_app.delete_issue'
+
+    def has_permission(self):
+        return super().has_permission() and self.request.user in self.get_object().project.user.all()

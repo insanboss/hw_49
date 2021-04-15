@@ -2,8 +2,17 @@
 
 
 {% block menu %}
+    {% if perms.tracker_app.change_issue and request.user in issue.project.user.all %}
     <li><a href="{% url 'tracker:issue_update' issue.id %}">Update issue</a></li>
+    {% endif %}
+    {% if perms.tracker_app.delete_issue and request.user in issue.project.user.all %}
     <li><a href="{% url 'tracker:issue_delete' issue.id %}">Delete issue</a></li>
+    {% endif %}
+
+
+    {% if perms.tracker_app.create_issue and request.user in issue.project.user.all %}
+    <li><a href="{% url 'tracker:issue_create' issue.project.pk %}">Create issue</a></li>
+    {% endif %}
 
 {% endblock menu %}
 
