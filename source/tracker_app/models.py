@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 from tracker_app.validator import BadWordsValidation, capital_letter, MinLengthValidator
@@ -61,3 +62,10 @@ class Project(models.Model):
     end_time = models.DateField(null=True, blank=True)
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=500)
+    user = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        related_name='projects',
+        verbose_name='Пользователь',
+    )

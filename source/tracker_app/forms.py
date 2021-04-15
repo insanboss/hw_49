@@ -17,3 +17,9 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['title', 'start_time', 'end_time', 'description']
+
+
+class AddUser(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['user']

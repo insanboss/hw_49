@@ -1,6 +1,6 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from tracker_app.forms import ProjectForm
+from tracker_app.forms import ProjectForm, AddUser
 from tracker_app.models import Project
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -42,3 +42,13 @@ class ProjectDelete(LoginRequiredMixin, DeleteView):
     template_name = 'projects/project_delete.html'
     context_object_name = 'project'
     success_url = reverse_lazy('tracker:index_projects')
+
+
+class AddUserToProject(UpdateView):
+    model = Project
+    template_name = 'users/add_user.html'
+    form_class = AddUser
+    context_object_name = 'project'
+
+    def get_success_url(self):
+        return reverse('tracker:project_View', kwargs={'pk': self.object.pk})

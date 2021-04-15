@@ -5,6 +5,7 @@
     <li><a href="{% url 'tracker:issue_create' project.pk %}">Create issue</a></li>
     <li><a href="{% url 'tracker:project_update' project.pk %}">Project update</a></li>
     <li><a href="{% url 'tracker:project_delete' project.pk %}">Project delete</a></li>
+    <li><a href="{% url 'tracker:user_add' project.pk %}">Add user</a></li>
 {% endblock menu %}
 
 {% block title %}{{ project.title }}{% endblock %}
@@ -28,6 +29,12 @@
             {% else %}
                 <p class="card-text">Описание не указано</p>
             {% endif %}
+            {% if project.user.all%}
+                <p class="card-text">Пользователи этого проекта:</p>
+            {% endif %}
+            {% for user in project.user.all %}
+            <p class="card-text">  {{ user }} </p>
+            {% endfor %}
             <div>
                 {% for issue in project.project_issues.all %}
                 <div class="guest_card card border-dark mb-5" style="max-width: 18rem;">
