@@ -1,0 +1,30 @@
+
+{% if is_paginated %}
+
+    {% include 'partial/pagination.html' %}
+
+{% endif %}
+
+
+{% for project in projects %}
+
+
+<div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+  <div class="card-header"><h3><a href="{% url "tracker:project_View" project.pk %}" class="card-project-inner">{{ project.title }}</a></h3></div>
+  <div class="card-body">
+    <h5 class="card-title">Project users:</h5>
+
+      {% for user in project.user.all %}
+    <p class="card-text"><a href="{% url 'accounts:detail' user.pk %}" class="card-project-inner">{{ user.username }}</a></p>
+      {% endfor %}
+  </div>
+</div>
+
+
+{% empty %}
+    <h2 class="text-center">Нет проектов</h2>
+{% endfor %}
+
+{% if is_paginated %}
+     {% include 'partial/pagination.html' %}
+{% endif %}

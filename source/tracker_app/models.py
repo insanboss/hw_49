@@ -69,3 +69,11 @@ class Project(models.Model):
         related_name='projects',
         verbose_name='Пользователь',
     )
+
+    class Meta:
+        permissions = [
+            ('add_user_to_project', 'Добавить пользователя к проекту')
+        ]
+
+    def __str__(self):
+        return "{}".format(self.title)

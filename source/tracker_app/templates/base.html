@@ -14,6 +14,7 @@
 <body>
 
     <nav style="position: static" class="navbar">
+
     <div class="container">
     <ul class="menu">
         <li><a href="{% url "tracker:index_projects" %}">На главную</a></li>
@@ -23,11 +24,14 @@
         {% if user.is_authenticated %}
             {% block menu_links %}{% endblock %}
             <li class="menu-right"><a href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}" class="nav-link">Выход</a></li>
-            <li class="menu-right">Привет, {{ user.username }}!</li>
-       {% else %}
+            <li class="menu-right">Привет, <a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a>!</li>
+        {% else %}
             <li class="menu-right"><a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}" class="nav-link">Вход</a></li>
             <li class="menu-right"><a href="{% url 'accounts:create' %}?next={{ request.get_full_path }}" class="nav-link">Регистрация</a></li>
-       {% endif %}
+        {% endif %}
+        {% if perms.accounts.can_view_users_list %}
+            <li><a href="{% url "accounts:users_list" %}">Список пользователей</a></li>
+        {% endif %}
     </ul>
     </div>
     </nav>
@@ -37,6 +41,7 @@
 
         {% endblock %}
     </div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

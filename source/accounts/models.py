@@ -33,3 +33,6 @@ class Profile(models.Model):
         db_table = 'profiles'
         verbose_name = 'Профиль пользователя'
         verbose_name_plural = 'Профили пользователей'
+        permissions = [
+            ('can_view_users_list', 'Может просматривать пользователей')
+        ]

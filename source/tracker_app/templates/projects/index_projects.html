@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+<div class="background-main">
 {% block menu %}
 
     <li><a href="{% url 'tracker:project_create' %}">Create project</a></li>
@@ -9,19 +10,9 @@
 
 {% block content %}
     <div class=".bg-light">
-        <h1 class="main_title">Проекты</h1>
-
-        {% for project in projects %}
-            <div class="guest_card card border-dark mb-5" style="max-width: 18rem;">
-              <div class="card-header">
-                  <a href="{% url 'tracker:project_View' project.pk %}"><span>{{ project.title }}</span></a>
-              </div>
-              <div class="card-body text-dark">
-                <h5 class="card-title"></h5>
-                    <p class="card-text">Дата начала : {{ project.start_time }}</p>
-              </div>
-            </div>
-        {% endfor %}
+        <h1 class="main_title title-project-main">Проекты</h1>
+    {% include 'partial/project_list.html' %}
     </div>
 
 {% endblock %}
+</div>

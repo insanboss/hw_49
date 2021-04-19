@@ -24,10 +24,13 @@ class ProjectCreate(PermissionRequiredMixin, CreateView):
     form_class = ProjectForm
     permission_required = 'tracker_app.add_project'
 
+    def form_valid(self, form):
+        project = form.save()
+        project.user.add(self.request.user)
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse('tracker:project_View', kwargs={'pk': self.object.pk})
-
-
 
 
 class ProjectUpdate(PermissionRequiredMixin, UpdateView):
@@ -54,7 +57,7 @@ class AddUserToProject(PermissionRequiredMixin, UpdateView):
     template_name = 'users/add_user.html'
     form_class = AddUser
     context_object_name = 'project'
-    permission_required = 'auth.add_user'
+    permission_required = 'tracker_app.add_user_to_project'
 
     def get_success_url(self):
         return reverse('tracker:project_View', kwargs={'pk': self.object.pk})
