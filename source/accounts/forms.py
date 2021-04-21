@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -6,6 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from django.contrib.auth.forms import UserCreationForm, UsernameField
+
+from accounts.models import Profile
 
 
 class MyUserCreationForm(UserCreationForm):
@@ -23,3 +26,15 @@ class MyUserCreationForm(UserCreationForm):
         fields = ['username', 'password1', 'password2',
                   'first_name', 'last_name', 'email']
         field_classes = {'username': UsernameField}
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ('user',)
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = ('email', 'first_name', 'last_name',)

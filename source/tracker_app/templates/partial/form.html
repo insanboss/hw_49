@@ -1,5 +1,7 @@
-{% csrf_token %}
-
+{% if not fields_only %}
+    <form action="{{ action_url }}" method="{{ form_method }}" enctype="{{ enctype }}">
+    {% csrf_token %}
+{% endif %}
 {% for error in form.non_field_errors %}
    <p class="form-error">{{ error }}</p>
 {% endfor %}
@@ -11,4 +13,8 @@
    {% endfor %}
    <p>{{ field }}</p>
 {% endfor %}
+
+{% if not fields_only %}
 <p><input type="submit" value="{{ button_text }}"></p>
+    </form>
+{% endif %}
