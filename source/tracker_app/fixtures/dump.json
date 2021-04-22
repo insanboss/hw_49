@@ -1,0 +1,453 @@
+[
+{
+  "model": "tracker_app.issue",
+  "pk": 5,
+  "fields": {
+    "created_at": "2021-03-12T13:23:54.135Z",
+    "updated_at": "2021-03-12T13:23:54.135Z",
+    "summary": "asdasdassad",
+    "description": "sadadsadsads",
+    "status": 1,
+    "project": 1,
+    "type": []
+  }
+},
+{
+  "model": "tracker_app.issue",
+  "pk": 8,
+  "fields": {
+    "created_at": "2021-03-16T13:11:01.809Z",
+    "updated_at": "2021-03-16T13:13:36.510Z",
+    "summary": "asdasads",
+    "description": "assadasdasd",
+    "status": 2,
+    "project": 1,
+    "type": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "tracker_app.issue",
+  "pk": 10,
+  "fields": {
+    "created_at": "2021-03-23T14:09:25.232Z",
+    "updated_at": "2021-03-23T14:09:25.232Z",
+    "summary": "Bug asdasdas",
+    "description": "asdasdasd",
+    "status": 2,
+    "project": 1,
+    "type": [
+      3
+    ]
+  }
+},
+{
+  "model": "tracker_app.issue",
+  "pk": 11,
+  "fields": {
+    "created_at": "2021-03-30T14:59:28.671Z",
+    "updated_at": "2021-03-30T14:59:28.671Z",
+    "summary": "Asdasdassad",
+    "description": "asdasd",
+    "status": 1,
+    "project": 1,
+    "type": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "tracker_app.issue",
+  "pk": 12,
+  "fields": {
+    "created_at": "2021-03-31T13:26:07.929Z",
+    "updated_at": "2021-03-31T13:26:07.929Z",
+    "summary": "He did a lot of effort",
+    "description": "he is very hard working",
+    "status": 1,
+    "project": 1,
+    "type": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "tracker_app.issue",
+  "pk": 13,
+  "fields": {
+    "created_at": "2021-03-31T13:50:34.377Z",
+    "updated_at": "2021-03-31T13:50:34.377Z",
+    "summary": "Messi_10_akjsdk",
+    "description": "12ertyujhgfd",
+    "status": 1,
+    "project": 1,
+    "type": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "tracker_app.issue",
+  "pk": 14,
+  "fields": {
+    "created_at": "2021-03-31T13:52:02.510Z",
+    "updated_at": "2021-03-31T13:52:02.510Z",
+    "summary": "KJKJKskjdksd",
+    "description": "asdasd",
+    "status": 1,
+    "project": 1,
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "tracker_app.issue",
+  "pk": 16,
+  "fields": {
+    "created_at": "2021-03-31T14:09:06.761Z",
+    "updated_at": "2021-04-02T07:58:09.171Z",
+    "summary": "Nigma_Miracle",
+    "description": "Amer al Barkawi",
+    "status": 1,
+    "project": 1,
+    "type": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "tracker_app.issue",
+  "pk": 21,
+  "fields": {
+    "created_at": "2021-04-02T11:54:08.869Z",
+    "updated_at": "2021-04-02T11:54:08.869Z",
+    "summary": "He is so hardworking",
+    "description": "i want to be like him",
+    "status": 1,
+    "project": 5,
+    "type": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "tracker_app.issue",
+  "pk": 22,
+  "fields": {
+    "created_at": "2021-04-07T13:32:10.064Z",
+    "updated_at": "2021-04-07T13:32:10.064Z",
+    "summary": "Shadow Fiend",
+    "description": "mider",
+    "status": 2,
+    "project": 1,
+    "type": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "tracker_app.issue",
+  "pk": 23,
+  "fields": {
+    "created_at": "2021-04-19T08:54:33.215Z",
+    "updated_at": "2021-04-19T08:54:33.215Z",
+    "summary": "Some_issue_123",
+    "description": "some text qwerty",
+    "status": 1,
+    "project": 10,
+    "type": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "tracker_app.issue",
+  "pk": 24,
+  "fields": {
+    "created_at": "2021-04-21T13:18:27.459Z",
+    "updated_at": "2021-04-21T13:18:27.459Z",
+    "summary": "Some_issue_123_4",
+    "description": "That`s a nice car man!!",
+    "status": 2,
+    "project": 12,
+    "type": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "tracker_app.status",
+  "pk": 1,
+  "fields": {
+    "name": "New"
+  }
+},
+{
+  "model": "tracker_app.status",
+  "pk": 2,
+  "fields": {
+    "name": "In Progress"
+  }
+},
+{
+  "model": "tracker_app.status",
+  "pk": 3,
+  "fields": {
+    "name": "Done"
+  }
+},
+{
+  "model": "tracker_app.type",
+  "pk": 1,
+  "fields": {
+    "name": "Task"
+  }
+},
+{
+  "model": "tracker_app.type",
+  "pk": 2,
+  "fields": {
+    "name": "Bug"
+  }
+},
+{
+  "model": "tracker_app.type",
+  "pk": 3,
+  "fields": {
+    "name": "Enhancement"
+  }
+},
+{
+  "model": "tracker_app.project",
+  "pk": 1,
+  "fields": {
+    "start_time": "2021-03-30",
+    "end_time": "2021-03-31",
+    "title": "its the most",
+    "description": "wonderful time of the year",
+    "user": []
+  }
+},
+{
+  "model": "tracker_app.project",
+  "pk": 5,
+  "fields": {
+    "start_time": "2021-03-30",
+    "end_time": "2021-03-31",
+    "title": "Ronaldo",
+    "description": "the best player in the world",
+    "user": []
+  }
+},
+{
+  "model": "tracker_app.project",
+  "pk": 6,
+  "fields": {
+    "start_time": "2021-03-30",
+    "end_time": "2021-03-31",
+    "title": "Amer_al_Barkawi",
+    "description": "one of the best player in the world",
+    "user": [
+      9
+    ]
+  }
+},
+{
+  "model": "tracker_app.project",
+  "pk": 7,
+  "fields": {
+    "start_time": "2021-03-30",
+    "end_time": "2021-03-31",
+    "title": "JustAnotherTask",
+    "description": "qwertyui",
+    "user": []
+  }
+},
+{
+  "model": "tracker_app.project",
+  "pk": 8,
+  "fields": {
+    "start_time": "2021-03-30",
+    "end_time": "2021-03-31",
+    "title": "222222222222222",
+    "description": "tftrvrvtrvrt",
+    "user": []
+  }
+},
+{
+  "model": "tracker_app.project",
+  "pk": 9,
+  "fields": {
+    "start_time": "2021-03-30",
+    "end_time": "2021-03-31",
+    "title": "admins project",
+    "description": "my project",
+    "user": [
+      2
+    ]
+  }
+},
+{
+  "model": "tracker_app.project",
+  "pk": 10,
+  "fields": {
+    "start_time": "2021-03-30",
+    "end_time": "2021-03-31",
+    "title": "admin`s project 2",
+    "description": "some text",
+    "user": [
+      2
+    ]
+  }
+},
+{
+  "model": "tracker_app.project",
+  "pk": 11,
+  "fields": {
+    "start_time": "2021-03-30",
+    "end_time": "2021-03-30",
+    "title": "tetestestse",
+    "description": "ttfytewet",
+    "user": [
+      2
+    ]
+  }
+},
+{
+  "model": "tracker_app.project",
+  "pk": 12,
+  "fields": {
+    "start_time": "2021-03-30",
+    "end_time": "2021-03-31",
+    "title": "Project_x",
+    "description": "qwertyiu",
+    "user": [
+      8
+    ]
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "birth_date": "2021-04-05",
+    "avatar": "avatars/admin.jpeg",
+    "github_profile": "https://github.com/insanboss",
+    "about_me": "111111111"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 2,
+  "fields": {
+    "user": 8,
+    "birth_date": "2021-04-05",
+    "avatar": "avatars/manager.png",
+    "github_profile": "https://github.com/insanboss",
+    "about_me": "I was born to become manager."
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 3,
+  "fields": {
+    "user": 9,
+    "birth_date": "2021-04-21",
+    "avatar": "",
+    "github_profile": null,
+    "about_me": ""
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "birth_date": null,
+    "avatar": "",
+    "github_profile": null,
+    "about_me": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 5,
+  "fields": {
+    "user": 3,
+    "birth_date": null,
+    "avatar": "",
+    "github_profile": null,
+    "about_me": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 6,
+  "fields": {
+    "user": 4,
+    "birth_date": null,
+    "avatar": "",
+    "github_profile": null,
+    "about_me": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 7,
+  "fields": {
+    "user": 5,
+    "birth_date": null,
+    "avatar": "",
+    "github_profile": null,
+    "about_me": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 8,
+  "fields": {
+    "user": 6,
+    "birth_date": null,
+    "avatar": "",
+    "github_profile": null,
+    "about_me": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 9,
+  "fields": {
+    "user": 7,
+    "birth_date": null,
+    "avatar": "",
+    "github_profile": null,
+    "about_me": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 10,
+  "fields": {
+    "user": 10,
+    "birth_date": null,
+    "avatar": "",
+    "github_profile": null,
+    "about_me": null
+  }
+}
+]
