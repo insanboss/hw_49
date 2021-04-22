@@ -37,7 +37,7 @@
                 <p class="card-text">Пользователи этого проекта:</p>
             {% endif %}
             {% for user in project.user.all %}
-            <p class="card-text">  {{ user }} </p>
+                <a href="{% url 'accounts:detail' user.pk %}" class="card-project-inner">{{ user.username }}</a>
             {% endfor %}
             <div>
                 {% for issue in project.project_issues.all %}
