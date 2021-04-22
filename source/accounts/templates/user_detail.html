@@ -5,7 +5,10 @@
 
 
 {% block menu_links %}
+    {% if request.user == user_obj %}
     <li><a href="{% url 'accounts:user_update_profile' %}">Редактировать</a></li>
+    <li><a href="{% url "accounts:password_change" user_obj.pk %}">Смена пароля</a></li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
