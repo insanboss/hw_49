@@ -39,7 +39,8 @@ INSTALLED_APPS = [
 
     # our apps
     'tracker_app',
-    'accounts'
+    'accounts',
+    'api_v1',
 ]
 
 MIDDLEWARE = [
@@ -125,4 +126,4 @@ LOGIN_URL = 'tracker:index_projects'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
-MEDIA_URL = 'uploads/'
+MEDIA_URL = '/uploads/'

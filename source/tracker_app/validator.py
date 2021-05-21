@@ -15,9 +15,6 @@ class BadWordsValidation(BaseValidator):
                 return True
 
 
-#     message = 'First letter of value "%(value)s" is not capital, pls write first capital word '
-#     def first_letter(self, word):
-#
 def capital_letter(string:str):
         if string[0].upper()!=string[0]:
             raise ValidationError('First letter  is not capital, pls write first capital word')
