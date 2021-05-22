@@ -1,6 +1,6 @@
 from django.urls import path
 
-from api_v1.views import add, get_csrf_token_view, subtract, multiply, divide
+from api_v1.views import add, get_csrf_token_view, subtract, multiply, divide, index
 
 app_name = 'api_v1'
 
@@ -10,4 +10,5 @@ urlpatterns = [
     path('subtract/', subtract, name='subtract'),
     path('multiply/', multiply, name='multiply'),
     path('divide/', divide, name='divide'),
+    path('index/', index, name='index'),
 ]
